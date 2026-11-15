@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#0b0e13">
+  <meta name="description" content="Point your phone's camera outside and see SpaceX's Starship standing there at its true size: 124 metres tall.">
+  <title>How big is Starship?</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <video id="cam" playsinline muted autoplay></video>
+  <canvas id="gl"></canvas>
+
+  <div id="hud" hidden>
+    <header id="topbar">
+      <div class="chip">
+        <strong>Starship</strong>
+        <span>124 m · 408 ft tall</span>
+      </div>
+    </header>
+
+    <div id="seek" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 9h-4.5v9h-5v-9H5z"/></svg>
+      <span>Starship</span>
+    </div>
+    <div id="lookup" class="chip" hidden>▲ Keep tilting up for the top</div>
+
+    <div id="toast" role="status" hidden></div>
+
+    <section id="sheet-compare" class="sheet" hidden>
+      <h2>Stand it next to</h2>
+      <div id="compare-list" class="options"></div>
+    </section>
+
+    <section id="sheet-options" class="sheet" hidden>
+      <h2>Options</h2>
+      <div class="row">
+        <div>
+          <div class="row-title">How high up are you?</div>
+          <div class="row-note" id="floor-note">Standing on the ground</div>
+        </div>
+        <div class="stepper">
+          <button id="floor-down" aria-label="Lower floor">−</button>
+          <output id="floor-value">Ground</output>
+          <button id="floor-up" aria-label="Higher floor">+</button>
+        </div>
+      </div>
+      <label class="row">
+        <div>
+          <div class="row-title">Ruler, person and bus</div>
+          <div class="row-note">Things of known size at the base</div>
+        </div>
+        <input type="checkbox" id="guides" checked>
+      </label>
+      <div class="row column">
+        <div class="row-title">Fine-tune size <output id="trim-value">100%</output></div>
+        <div class="row-note">Phone cameras differ slightly. Adjust if the person next to the rocket looks the wrong size.</div>
+        <input type="range" id="trim" min="80" max="125" value="100">
+      </div>
+    </section>
+
+    <footer id="dock">
+      <div class="distance">
+        <output id="distance-value">200 m away</output>
+        <input type="range" id="distance" min="0" max="1000" value="450" aria-label="Distance to the rocket">
+        <div class="scale"><span>30 m</span><span>2 km</span></div>
+      </div>
+      <div class="actions">
+        <button id="btn-place">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/></svg>
+          Put it here
+        </button>
+        <button id="btn-compare">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 21V4M17 21v-9M3 21h18"/></svg>
+          Compare
+        </button>
+        <button id="btn-options">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>
+          Options
+        </button>
+        <button id="btn-shot" class="shutter" aria-label="Take a photo"><span></span></button>
+      </div>
+    </footer>
+  </div>
+
+  <main id="intro">
+    <div class="intro-inner">
+      <svg class="teaser" viewBox="0 0 150 262" aria-hidden="true">
+        <line x1="6" y1="255.5" x2="144" y2="255.5" class="t-ground"/>
+        <g class="t-ticks">
+          <line x1="96" y1="6" x2="104" y2="6"/><line x1="100" y1="6" x2="100" y2="255"/><line x1="96" y1="255" x2="104" y2="255"/>
+        </g>
+        <text x="110" y="134" class="t-label">124 m</text>
+        <path class="t-steel" d="M51 255V41Q51 18 60 6Q69 18 69 41V255Z"/>
+        <path class="t-tiles" d="M51 110V41Q51 18 60 6V110Z"/>
+        <path class="t-tiles" d="M51 108H42V100L47 91L51 89ZM51 37H45V33L49 21L52 19Z"/>
+        <path class="t-steel" d="M69 108H78V100L73 91L69 89ZM69 37H75V33L71 21L68 19Z"/>
+        <path class="t-steel" d="M43 127h8v2.4h-8zM69 127h8v2.4h-8z"/>
+        <line x1="51" y1="110.4" x2="69" y2="110.4" class="t-split"/>
+        <rect x="26" y="251.5" width="1.6" height="3.5" rx=".8" class="t-you"/>
+        <text x="26.8" y="245" class="t-label t-you-label" text-anchor="middle">you</text>
+      </svg>
+      <h1>How big is Starship?</h1>
+      <p class="lede">Open your camera and see the tallest rocket ever built standing outside at its true size.</p>
+      <button id="start" class="primary">Open camera</button>
+      <button id="start-demo" class="link">Try it without a camera</button>
+      <p class="fine">Works best outdoors or looking out of a window. Your camera feed never leaves your phone.</p>
+    </div>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
